@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
+    String backdropPath;
     String title;
     String posterPath;
     String overView;
 
+
+
     public Movie(JSONObject jsonObject) throws JSONException {
         this.title = jsonObject.getString("title");
         this.posterPath =  jsonObject.getString("poster_path");
+        this.backdropPath = jsonObject.getString("backdrop_path");
         this.overView = jsonObject.getString("overview");
     }
 
@@ -25,7 +29,9 @@ public class Movie {
         }
         return movies;
     }
-
+    public String getBackdropPath() {
+        return ("https://image.tmdb.org/t/p/w342"+backdropPath);
+    }
     public String getTitle() {
         return title;
     }

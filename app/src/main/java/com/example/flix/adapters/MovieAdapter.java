@@ -1,6 +1,7 @@
 package com.example.flix.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(@NotNull Movie selectedMovie) {
              tvTitle.setText(selectedMovie.getTitle());
              tvOverView.setText(selectedMovie.getOverView());
-             Glide.with(context).load(selectedMovie.getPosterPath()).into(ivPoster);
+             String imageUrl;
+             //if phone is in landscape
+            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                imageUrl = selectedMovie.getBackdropPath();
+            }
+            else{
+                imageUrl = selectedMovie.getPosterPath();
+            }
+             Glide.with(context).load(imageUrl).into(ivPoster);
         }
 
     }
