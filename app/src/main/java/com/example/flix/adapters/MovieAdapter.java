@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.example.flix.R;
 import com.example.flix.models.Movie;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -66,7 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             ivPoster = itemView.findViewById(R.id.ivPoster);
         }
 
-        public void bind(Movie selectedMovie) {
+        public void bind(@NotNull Movie selectedMovie) {
              tvTitle.setText(selectedMovie.getTitle());
              tvOverView.setText(selectedMovie.getOverView());
              Glide.with(context).load(selectedMovie.getPosterPath()).into(ivPoster);
