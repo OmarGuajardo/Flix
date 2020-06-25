@@ -26,4 +26,15 @@ public class Movie {
         return movies;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public String getOverView() {
+        return overView;
+    }
 }
