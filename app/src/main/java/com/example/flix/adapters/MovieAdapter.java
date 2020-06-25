@@ -1,22 +1,25 @@
 package com.example.flix.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.flix.MovieDetailsActivity;
 import com.example.flix.R;
 import com.example.flix.models.Movie;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -56,20 +59,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvTitle;
         TextView tvOverView;
         ImageView ivPoster;
+        RelativeLayout layoutMovie;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverView = itemView.findViewById(R.id.tvOverView);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            layoutMovie = itemView.findViewById(R.id.layoutMovie);
+            itemView.setOnClickListener(this);
+
         }
 
-        public void bind(@NotNull Movie selectedMovie) {
+
+        public void bind(@NotNull final Movie selectedMovie) {
              tvTitle.setText(selectedMovie.getTitle());
              tvOverView.setText(selectedMovie.getOverView());
              String imageUrl;
@@ -83,6 +91,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
              Glide.with(context).load(imageUrl).into(ivPoster);
         }
 
+
+        @Override
+        public void onClick(View view) {
+            // gets item position
+            int position = getAdapterPosition();
+            // make sure the position is valid, i.e. actually exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                // get the movie at the position, this won't work if the class is static
+                Movie movie = movies.get(position);
+                // create intent for the new activity
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                // serialize the movie using parceler, use its short name as a key
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                // show the activity
+                context.startActivity(intent);
+            }
+        }
     }
 
 

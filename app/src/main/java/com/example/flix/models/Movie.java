@@ -6,7 +6,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.parceler.Parcel;
 
+@Parcel
 public class Movie {
     String backdropPath;
     String title;
@@ -14,6 +16,7 @@ public class Movie {
     String overView;
 
 
+    public Movie(){}
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.title = jsonObject.getString("title");
