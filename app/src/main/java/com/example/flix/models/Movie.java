@@ -14,7 +14,7 @@ public class Movie {
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.title = jsonObject.getString("title");
-        this.posterPath = jsonObject.getString("poster_path");
+        this.posterPath =  jsonObject.getString("poster_path");
         this.overView = jsonObject.getString("overview");
     }
 
@@ -31,7 +31,7 @@ public class Movie {
     }
 
     public String getPosterPath() {
-        return posterPath;
+        return ("https://image.tmdb.org/t/p/w342" + posterPath);
     }
 
     public String getOverView() {

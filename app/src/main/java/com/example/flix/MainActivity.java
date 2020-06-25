@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG,"Results " + results.toString());
                     movies = Movie.fromJsonArray(results);
+                    Log.i(TAG,"Length of movie list " + movies.size());
+                    Log.i(TAG,"Movie Poster URL for index 0 is " + movies.get(0).getPosterPath());
+
                 } catch (JSONException e) {
                     Log.e(TAG,"Hit JSON Exception",e);
                     e.printStackTrace();
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG,"onFailure");
             }
         });
+
+
+//        Log.i(TAG,"Test of image poster: " + movies.get(0).getPosterPath());
 
 
     }
