@@ -30,13 +30,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         // unwrap the movie passed in via intent, using its simple name as a key
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-        Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
         //Populating info based on the Movie received
         binding.tvTitle.setText(movie.getTitle());
         binding.tvOverview.setText(movie.getOverView());
         binding.tvRelease.setText("Release Date: "+movie.getReleaseDate());
 
+        //Populating the Poster with the image of the Movie
         Glide.with(getApplicationContext()).load(movie.getPosterPath()).into(binding.posterImage);
 
         //Setting the number of starts
