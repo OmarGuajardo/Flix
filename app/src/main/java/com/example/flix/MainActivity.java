@@ -26,8 +26,8 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    final static String NOW_PLAYING_ENDPOINT = "https://api.themoviedb.org/3/movie/top_rated?api_key=fb1cb576c71896da8c7c626bae047420";
-    final static String TOP_RATED_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
+    final static String TOP_RATED_ENDPOINT = "https://api.themoviedb.org/3/movie/top_rated?api_key=fb1cb576c71896da8c7c626bae047420";
+    final static String NOW_PLAYING_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
 
     final static String TAG = "MainActivity";
     List<Movie> movies;

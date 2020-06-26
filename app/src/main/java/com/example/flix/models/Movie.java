@@ -14,7 +14,6 @@ import org.parceler.Parcel;
 public class Movie {
 
 
-    String releaseDate;
     String title;
     String posterPath;
     String overView;
@@ -31,7 +30,6 @@ public class Movie {
         this.posterPath =  jsonObject.getString("poster_path");
         this.overView = jsonObject.getString("overview");
         this.voteAverage = jsonObject.getDouble("vote_average");
-        this.releaseDate = jsonObject.getString("release_date");
         this.movieID = jsonObject.getInt("id");
     }
 
@@ -47,9 +45,6 @@ public class Movie {
         return movieID;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
     public Double getVoteAverage() {
         return voteAverage;
     }
