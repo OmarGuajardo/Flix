@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="150dp">
+    android:paddingTop="10dp"
+    android:background="@drawable/custom_ripple"
+
+
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivPoster"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="5dp"
-        android:background="#72EEA700"
+        android:layout_marginTop="27dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -22,10 +26,11 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp"
         android:ellipsize="end"
+        android:fontFamily="@font/changa"
         android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Onward" />
 
@@ -35,13 +40,15 @@
         android:layout_height="145dp"
         android:layout_below="@+id/tvTitle"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+
+        android:layout_marginEnd="8dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:ellipsize="end"
+        android:fontFamily="@font/changa"
         android:maxLines="5"
         android:textAlignment="textStart"
-        android:textColor="@android:color/background_light"
+        android:textColor="@android:color/black"
         tools:text="In a suburban fantasy world, two teenage elf brothers embark on an extraordinary quest to discover if there is still a little magic left out there." />
 </RelativeLayout>
