@@ -42,12 +42,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ActivityMovieDetailsBinding binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         //Fetching the Trailer with the Movie ID
         AsyncHttpClient client = new AsyncHttpClient();
 
         // unwrap the movie passed in via intent, using its simple name as a key
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-
+        Log.d(TAG, "onCreate: this is the movie ID " + movie.getMovieID());
         //getting the MovieID from the object and customizing the endpoint with said ID
         String movieID = String.valueOf(movie.getMovieID());
         String customizedENDPOINT = MessageFormat.format(MOVIE_TRAILER_ENDPOINT,movieID);

@@ -26,9 +26,12 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    final static String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
+    final static String NOW_PLAYING_ENDPOINT = "https://api.themoviedb.org/3/movie/top_rated?api_key=fb1cb576c71896da8c7c626bae047420";
+    final static String TOP_RATED_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
+
     final static String TAG = "MainActivity";
     List<Movie> movies;
+    MovieAdapter movieAdapter;
 
 
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Create and Adapter
-        final MovieAdapter movieAdapter = new MovieAdapter(this,movies);
+        movieAdapter = new MovieAdapter(this,movies);
 
         //Set the Adapter on the RecyclerView
         binding.rvMovies.setAdapter(movieAdapter);
@@ -52,12 +55,17 @@ public class MainActivity extends AppCompatActivity {
         binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
 
-        //Fetching the movie data and populating 'movies' with Movie objects
-        //Movie has three methods
-            //getOverView,getTitle, and getPosterPath
-        AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        fetchData(client,NOW_PLAYING_ENDPOINT);
+
+
+
+    }
+
+    //Method to fetch different types of data
+    public void fetchData(AsyncHttpClient client, String endpoint){
+        client.get(endpoint, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.i(TAG,"onSuccess");
@@ -78,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG,"onFailure");
             }
         });
-
-
 
     }
 }

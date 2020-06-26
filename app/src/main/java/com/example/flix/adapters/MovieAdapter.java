@@ -84,19 +84,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
              tvOverView.setText(selectedMovie.getOverView());
              tvOverView.getEllipsize();
              String imageUrl;
-             //if phone is in landscape
-//            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-//                imageUrl = selectedMovie.getBackdropPath();
-//                Glide.with(context).load(imageUrl).into(ivPoster);
-//            }
-//            else{
-//                imageUrl = selectedMovie.getPosterPath();
-//                //Circle Crop
-//                Glide.with(context)
-//                        .load(imageUrl)
-//                        .circleCrop()
-//                        .into(ivPoster);
-//            }
             imageUrl = selectedMovie.getPosterPath();
             //Circle Crop
             Glide.with(context)
