@@ -80,6 +80,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(@NotNull final Movie selectedMovie) {
              tvTitle.setText(selectedMovie.getTitle());
              tvOverView.setText(selectedMovie.getOverView());
+             tvOverView.getEllipsize();
              String imageUrl;
              //if phone is in landscape
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){

@@ -10,6 +10,9 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Movie {
+
+
+    String releaseDate;
     String backdropPath;
     String title;
     String posterPath;
@@ -27,6 +30,7 @@ public class Movie {
         this.backdropPath = jsonObject.getString("backdrop_path");
         this.overView = jsonObject.getString("overview");
         this.voteAverage = jsonObject.getDouble("vote_average");
+        this.releaseDate = jsonObject.getString("release_date");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws  JSONException{
@@ -35,6 +39,9 @@ public class Movie {
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
         return movies;
+    }
+    public String getReleaseDate() {
+        return releaseDate;
     }
     public Double getVoteAverage() {
         return voteAverage;
