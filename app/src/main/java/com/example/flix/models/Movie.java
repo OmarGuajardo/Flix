@@ -1,5 +1,7 @@
 package com.example.flix.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +29,8 @@ public class Movie {
     public Movie(JSONObject jsonObject) throws JSONException {
         this.title = jsonObject.getString("title");
         this.posterPath =  jsonObject.getString("poster_path");
-        this.backdropPath = jsonObject.getString("backdrop_path");
+        this.backdropPath = (jsonObject.getString("backdrop_path") != "null" ? jsonObject.getString("backdrop_path"):posterPath);
+        Log.i("Movie.java","this is what I'm putting for backdropPath " + backdropPath);
         this.overView = jsonObject.getString("overview");
         this.voteAverage = jsonObject.getDouble("vote_average");
         this.releaseDate = jsonObject.getString("release_date");

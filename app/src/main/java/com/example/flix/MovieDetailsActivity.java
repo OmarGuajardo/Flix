@@ -17,6 +17,8 @@ import com.example.flix.models.Movie;
 
 import org.parceler.Parcels;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class MovieDetailsActivity extends AppCompatActivity {
 
 
@@ -37,7 +39,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding.tvRelease.setText("Release Date: "+movie.getReleaseDate());
 
         //Populating the Poster with the image of the Movie
-        Glide.with(getApplicationContext()).load(movie.getPosterPath()).into(binding.posterImage);
+        Glide.with(getApplicationContext())
+                .load(movie.getPosterPath())
+                .transform(new RoundedCornersTransformation(30 , 10))
+                .into(binding.posterImage);
 
         //Setting the number of starts
         float voteAverage = movie.getVoteAverage().floatValue();
