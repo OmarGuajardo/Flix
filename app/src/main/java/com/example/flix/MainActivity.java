@@ -1,5 +1,6 @@
 package com.example.flix;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -8,6 +9,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     final static String TOP_RATED_ENDPOINT = "https://api.themoviedb.org/3/movie/top_rated?api_key=fb1cb576c71896da8c7c626bae047420";
     final static String NOW_PLAYING_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
+    final static String UPCOMING_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing?api_key=fb1cb576c71896da8c7c626bae047420";
 
     final static String TAG = "MainActivity";
     List<Movie> movies;
@@ -58,15 +62,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        fetchData(client,NOW_PLAYING_ENDPOINT);
+
+        fetchData(NOW_PLAYING_ENDPOINT);
 
 
 
     }
 
     //Method to fetch different types of data
-    public void fetchData(AsyncHttpClient client, String endpoint){
+    public void fetchData(String endpoint){
+        AsyncHttpClient client = new AsyncHttpClient();
         client.get(endpoint, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG,"Results " + results.toString());
+                    movies.clear();
                     movies.addAll(Movie.fromJsonArray(results));
                     movieAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -96,5 +102,28 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options,menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Alphabetize:
+                Toast.makeText(this, "Alphabetize", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.Top_Rated:
+                fetchData(TOP_RATED_ENDPOINT);
+                Toast.makeText(this, "Top Rated", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.Upcoming:
+                fetchData(UPCOMING_ENDPOINT);
+                Toast.makeText(this, "Up Coming", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.Now_Playing:
+                fetchData(NOW_PLAYING_ENDPOINT);
+                Toast.makeText(this, "Now Playing", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
