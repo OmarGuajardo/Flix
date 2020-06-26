@@ -2,9 +2,11 @@ package com.example.flix;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Rating;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -47,5 +49,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
         //Setting the number of starts
         float voteAverage = movie.getVoteAverage().floatValue();
         binding.rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
+
+        binding.btnTrailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieDetailsActivity.this,MovieTrailerActivity.class);
+                intent.putExtra("YouTubeUrl","tKodtNFpzBA");
+                startActivity(intent);
+            }
+        });
     }
 }

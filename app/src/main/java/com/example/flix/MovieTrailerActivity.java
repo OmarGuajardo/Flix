@@ -16,19 +16,17 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Incorporating the bind library
-        ActivityMovieTrailerBinding binding = ActivityMovieTrailerBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        //Using binding library
+        ActivityMovieTrailerBinding binding = ActivityMovieTrailerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // temporary test video id -- TODO replace with movie trailer video id
-        final String videoId = "tKodtNFpzBA";
-
-        // resolve the player view from the layout
-        YouTubePlayerView playerView = (YouTubePlayerView)binding.player;
+        final String videoId = getIntent().getExtras().getString("YouTubeUrl");
 
         // initialize with API key stored in secrets.xml
-        playerView.initialize(getString(R.string.API_KEY), new YouTubePlayer.OnInitializedListener() {
+        binding.player.initialize(getString(R.string.API_KEY), new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                 YouTubePlayer youTubePlayer, boolean b) {
@@ -43,5 +41,5 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                 Log.e("MovieTrailerActivity", "Error initializing YouTube player");
             }
         });
-    }
+}
 }

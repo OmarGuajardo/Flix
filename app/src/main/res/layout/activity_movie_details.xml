@@ -68,4 +68,14 @@
         android:layout_marginTop="5dp"
 
         tools:text="Genre: Comedy" />
+
+    <Button
+        android:id="@+id/btnTrailer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOverview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="97dp"
+        android:text="Click me to watch trailer" />
 </RelativeLayout>
