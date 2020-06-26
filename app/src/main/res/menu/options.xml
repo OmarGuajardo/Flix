@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/Alphabetize"
+        android:icon="@drawable/ic_icon"
+        android:title="Alphabetize"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/Top_Rated"
+        android:icon="@drawable/ic_icon"
+        android:title="Top Rated"
+        app:showAsAction="never"/>
+    <item android:id="@+id/Now_Playing"
+        android:icon="@drawable/ic_icon"
+        android:title="Now Playing"
+        app:showAsAction="never"/>
+    <item android:id="@+id/Upcoming"
+        android:icon="@drawable/ic_icon"
+        android:title="Upcoming"
+        app:showAsAction="never"/>
+
+</menu>

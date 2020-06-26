@@ -85,6 +85,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
              tvOverView.getEllipsize();
              String imageUrl;
             imageUrl = selectedMovie.getPosterPath();
+            Glide.with(context)
+                    .load("https://via.placeholder.com/150")
+                    .placeholder(R.drawable.placeholder)
+                    .into(ivPoster);
             //Circle Crop
             Glide.with(context)
                     .load(imageUrl)
