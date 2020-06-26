@@ -7,7 +7,8 @@
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="350dp"
+        android:layout_width="130dp"
+        android:padding="10dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
@@ -17,7 +18,9 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="7dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:textSize="24sp"
         tools:text="Onward" />
@@ -28,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="7dp"
         android:ellipsize="end"
         android:maxLines="7"
         android:layout_toEndOf="@+id/ivPoster"
