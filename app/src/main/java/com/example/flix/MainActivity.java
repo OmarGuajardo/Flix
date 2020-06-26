@@ -12,6 +12,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flix.adapters.MovieAdapter;
+import com.example.flix.databinding.ActivityMainBinding;
 import com.example.flix.models.Movie;
 
 import org.json.JSONArray;
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
     final static String TAG = "MainActivity";
     List<Movie> movies;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         movies = new ArrayList<>();
 
@@ -41,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         final MovieAdapter movieAdapter = new MovieAdapter(this,movies);
 
         //Set the Adapter on the RecyclerView
-        rvMovies.setAdapter(movieAdapter);
+        binding.rvMovies.setAdapter(movieAdapter);
         //Set Layout Manager on the RecyclerView (REQUIRED)
-        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
 
         //Fetching the movie data and populating 'movies' with Movie objects

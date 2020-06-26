@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.flix.MainActivity;
 import com.example.flix.MovieDetailsActivity;
 import com.example.flix.R;
+import com.example.flix.databinding.ActivityMainBinding;
+import com.example.flix.databinding.ItemMovieBinding;
 import com.example.flix.models.Movie;
 
 import org.jetbrains.annotations.NotNull;
@@ -68,14 +70,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverView;
         ImageView ivPoster;
-        RelativeLayout layoutMovie;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverView = itemView.findViewById(R.id.tvOverView);
             ivPoster = itemView.findViewById(R.id.ivPoster);
-            layoutMovie = itemView.findViewById(R.id.layoutMovie);
+
             itemView.setOnClickListener(this);
 
         }
