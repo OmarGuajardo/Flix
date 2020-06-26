@@ -99,11 +99,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
 
 
-//            //Rounded Corners
-//            Glide.with(context)
-//                    .load(imageUrl)
-//                    .transform(new RoundedCornersTransformation(30 , 10))
-//                    .into(ivPoster);
 
         }
 

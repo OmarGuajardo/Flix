@@ -19,6 +19,7 @@ public class Movie {
     String title;
     String posterPath;
     String overView;
+    int movieID;
     Double voteAverage;
 
 
@@ -30,10 +31,10 @@ public class Movie {
         this.title = jsonObject.getString("title");
         this.posterPath =  jsonObject.getString("poster_path");
         this.backdropPath = (jsonObject.getString("backdrop_path") != "null" ? jsonObject.getString("backdrop_path"):posterPath);
-        Log.i("Movie.java","this is what I'm putting for backdropPath " + backdropPath);
         this.overView = jsonObject.getString("overview");
         this.voteAverage = jsonObject.getDouble("vote_average");
         this.releaseDate = jsonObject.getString("release_date");
+        this.movieID = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws  JSONException{
@@ -43,6 +44,11 @@ public class Movie {
         }
         return movies;
     }
+
+    public int getMovieID() {
+        return movieID;
+    }
+
     public String getReleaseDate() {
         return releaseDate;
     }
