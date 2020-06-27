@@ -137,14 +137,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void merge_sort(List<Movie> list){
-//        if(list.size() < 2){
+//        if(left == right){
 //            return list;
 //        }
 //        else{
-//            int mid = list.size()/2;
-//            List<Movie> left = list.subList(0,mid-1);
-//            List<Movie> right = list.subList(mid,list.size()-1);
-//            return merge(merge_sort(left),merge_sort(right));
+//          int mid = (left+right)/2;
+//          return merge(merge_sort(list,0,mid),merge_sort(list,mid+1,right));
 //        }
         Collections.sort(movies, new Comparator() {
             @Override
