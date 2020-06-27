@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     final static String TAG = "MainActivity";
     List<Movie> movies;
+    List<Movie> topRated;
+    List<Movie> nowPlaying;
+    List<Movie> upComing;
     MovieAdapter movieAdapter;
 
 
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         movies = new ArrayList<>();
+        topRated = new ArrayList<>();
+        nowPlaying = new ArrayList<>();
+        upComing = new ArrayList<>();
+
         //Create and Adapter
         movieAdapter = new MovieAdapter(this,movies);
 
@@ -63,38 +70,48 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        fetchData(NOW_PLAYING_ENDPOINT);
+        fetchData(NOW_PLAYING_ENDPOINT,nowPlaying);
 
 
 
     }
 
     //Method to fetch different types of data
-    public void fetchData(String endpoint){
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(endpoint, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.i(TAG,"onSuccess");
-                JSONObject jsonObject = json.jsonObject;
-                try {
-                    JSONArray results = jsonObject.getJSONArray("results");
-                    Log.i(TAG,"Results " + results.toString());
-                    movies.clear();
-                    movies.addAll(Movie.fromJsonArray(results));
-                    movieAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    Log.e(TAG,"Hit JSON Exception",e);
-                    e.printStackTrace();
+    public void fetchData(String endpoint, final List<Movie> auxList){
+
+        if(auxList.isEmpty()) {
+            Log.d(TAG, "fetching data");
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(endpoint, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Headers headers, JSON json) {
+                    Log.i(TAG, "onSuccess");
+                    JSONObject jsonObject = json.jsonObject;
+                    try {
+                        JSONArray results = jsonObject.getJSONArray("results");
+                        Log.i(TAG, "Results " + results.toString());
+                        movies.clear();
+                        movies.addAll(Movie.fromJsonArray(results));
+                        auxList.addAll(Movie.fromJsonArray(results));
+                        movieAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Hit JSON Exception", e);
+                        e.printStackTrace();
+                    }
                 }
-            }
-            @Override
-            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
 
-                Log.i(TAG,"onFailure");
-            }
-        });
+                @Override
+                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
 
+                    Log.i(TAG, "onFailure");
+                }
+            });
+        }
+        else{
+            movies.clear();
+            movies.addAll(auxList);
+            movieAdapter.notifyDataSetChanged();
+        }
     }
 
     public List<Movie> merge(List<Movie> l1, List<Movie> l2){
@@ -168,15 +185,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Alphabetize", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.Top_Rated:
-                fetchData(TOP_RATED_ENDPOINT);
+                fetchData(TOP_RATED_ENDPOINT,topRated);
                 Toast.makeText(this, "Top Rated", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.Upcoming:
-                fetchData(UPCOMING_ENDPOINT);
+                fetchData(UPCOMING_ENDPOINT,upComing);
                 Toast.makeText(this, "Up Coming", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.Now_Playing:
-                fetchData(NOW_PLAYING_ENDPOINT);
+                fetchData(NOW_PLAYING_ENDPOINT,nowPlaying);
                 Toast.makeText(this, "Now Playing", Toast.LENGTH_SHORT).show();
                 return true;
             default:
