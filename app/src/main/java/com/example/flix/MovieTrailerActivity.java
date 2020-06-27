@@ -42,6 +42,9 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                 Log.e("MovieTrailerActivity", "Error initializing YouTube player");
             }
         });
+
+
+
     }
 
     @Override
@@ -79,3 +82,4 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 }
+
