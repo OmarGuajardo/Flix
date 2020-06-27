@@ -34,7 +34,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 
-![](MasterDemo2.gif)
+![](MasterDemo.gif)
 
 GIF created with [EZGIF.com](https://ezgif.com/video-to-gif/ezgif-6-48381e8cdd69.mp4).
 
