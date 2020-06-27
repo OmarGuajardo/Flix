@@ -16,6 +16,7 @@ public class Movie {
 
     String title;
     String posterPath;
+    String backdropPath;
     String overView;
     int movieID;
     Double voteAverage;
@@ -28,6 +29,7 @@ public class Movie {
     public Movie(JSONObject jsonObject) throws JSONException {
         this.title = jsonObject.getString("title");
         this.posterPath =  jsonObject.getString("poster_path");
+        this.backdropPath =  jsonObject.getString("backdrop_path");
         this.overView = jsonObject.getString("overview");
         this.voteAverage = jsonObject.getDouble("vote_average");
         this.movieID = jsonObject.getInt("id");
@@ -39,6 +41,10 @@ public class Movie {
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
         return movies;
+    }
+
+    public String getBackdropPath() {
+        return ("https://image.tmdb.org/t/p/w342" + backdropPath);
     }
 
     public int getMovieID() {

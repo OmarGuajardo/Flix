@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:background="@color/cardview_light_background"
     android:layout_height="match_parent"
-    tools:context=".MovieDetailsActivity">
+    android:configChanges="orientation|screenSize"
+tools:context=".MovieDetailsActivity">
 <ScrollView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">

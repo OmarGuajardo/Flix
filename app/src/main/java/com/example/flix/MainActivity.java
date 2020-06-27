@@ -67,13 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //Set Layout Manager on the RecyclerView (REQUIRED)
         binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-
-
-
         fetchData(NOW_PLAYING_ENDPOINT,nowPlaying);
-
-
-
     }
 
     //Method to fetch different types of data

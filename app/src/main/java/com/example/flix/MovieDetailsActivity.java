@@ -2,7 +2,9 @@ package com.example.flix;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -79,11 +81,22 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding.tvTitle.setText(movie.getTitle());
         binding.tvOverview.setText(movie.getOverView());
 
-        //Populating the Poster with the image of the Movie
-        Glide.with(getApplicationContext())
-                .load(movie.getPosterPath())
-                .transform(new RoundedCornersTransformation(30, 10))
-                .into(binding.posterImage);
+
+        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            //Populating the Poster with the image of the Movie
+            Glide.with(getApplicationContext())
+                    .load(movie.getBackdropPath())
+                    .transform(new RoundedCornersTransformation(30, 10))
+                    .into(binding.posterImage);
+        }else{
+            //Populating the Poster with the image of the Movie
+            Glide.with(getApplicationContext())
+                    .load(movie.getPosterPath())
+                    .transform(new RoundedCornersTransformation(30, 10))
+                    .into(binding.posterImage);
+        }
+
+
 
 
 
