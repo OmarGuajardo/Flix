@@ -108,42 +108,54 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public List<Movie> merge(List<Movie> l1, List<Movie> l2){
-        List<Movie> aux = new ArrayList<>();
-        int left = 0;
-        int right = 0;
-        while (left < l1.size() && right < l2.size()){
-
-            Movie movieLeft = l1.get(left);
-            Movie movieRight = l2.get(right);
-
-            int result = movieLeft.getTitle().compareTo(movieRight.getTitle());
-            if(result >= 0){
-                aux.add(movieLeft);
-                left++;
-            }
-            else{
-                aux.add(movieRight);
-                right++;
-            }
-        }
-        if(left < l1.size()){
-            aux.addAll(l1);
-        }
-        else{
-            aux.addAll(l2);
-        }
-        return aux;
+    public void merge(List<Movie> list, int beg,int mid,int end){
+        List<Movie> aux = new ArrayList<Movie>();
+       int left = beg;
+       int right = mid+1;
+       while(left <= mid && right <= end){
+           Movie leftMovie = list.get(left);
+           Movie rightMovie = list.get(right);
+           if(leftMovie.getTitle().compareTo(rightMovie.getTitle()) < 0){
+               aux.add(leftMovie);
+               left++;
+           }
+           else {
+               aux.add(rightMovie);
+               right++;
+           }
+       }
+       if(left<= mid){
+           for(int i = left;i<=mid;i++){
+               aux.add(list.get(i));
+           }
+       }
+       else{
+           for(int i = right;i<=end;i++){
+               aux.add(list.get(i));
+           }
+       }
+       for(int i = 0;i<aux.size();i++){
+           list.set(beg+i,aux.get(i));
+       }
     }
 
-    public void merge_sort(List<Movie> list){
-//        if(left == right){
-//            return list;
-//        }
-//        else{
-//          int mid = (left+right)/2;
-//          return merge(merge_sort(list,0,mid),merge_sort(list,mid+1,right));
-//        }
+    public void merge_sort(List<Movie> list,int left,int right){
+        if(left == right){
+            return;
+        }
+        else{
+          int mid = (left+right)/2;
+          merge_sort(list,left,mid);
+          merge_sort(list,mid+1,right);
+          merge(list,left,mid,right);
+
+        }
+
+
+    }
+
+    public void sort(List<Movie>list){
+    //This is using the built in function to sort items
         Collections.sort(movies, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
@@ -152,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
                 return m1.getTitle().compareToIgnoreCase(m2.getTitle());
             }
         });
-
     }
 
     @Override
@@ -172,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.Alphabetize:
-                merge_sort(movies);
+                merge_sort(movies,0,movies.size()-1);
                 movieAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Alphabetize", Toast.LENGTH_SHORT).show();
                 return true;
